@@ -1,26 +1,38 @@
 import React, {useState, useEffect} from "react";
 
-const InputItem = () => {
+const InputItem = (props) => {
   const [inputText, setInputText] = useState("");
   const [selectCategory, setSelectCategory] = useState("");
   const [inputDate, setInputDate] = useState("");
 
   const inputChangeHandler = (event) => {
     setInputText(event.target.value);
-    console.log(inputText);
   };
 
   const dateChangeHandler = (event) => {
     setInputDate(event.target.value);
-    console.log(inputDate);
   };
 
   const selectChangeHandler = (event) => {
     setSelectCategory(event.target.value);
   };
 
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    const dataInput = {
+      date: inputDate,
+      content: inputText,
+      category: selectCategory,
+    };
+    props.SendData(dataInput);
+
+    setInputDate("");
+    setInputText("");
+    setSelectCategory("");
+  };
+
   return (
-    <form>
+    <form onSubmit={onSubmitHandler}>
       <div>
         <input
           onChange={inputChangeHandler}
