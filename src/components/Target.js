@@ -16,6 +16,7 @@ const Target = (props) => {
       <InputItem SendData={addDataHandler} />
       {props.data.map((item) => (
         <TargetItem
+          id={item.id}
           key={item.id}
           date={item.date}
           content={item.content}
